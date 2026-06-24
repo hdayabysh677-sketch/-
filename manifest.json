@@ -1,0 +1,19 @@
+{
+  "nav_colors": true,
+  "name": "هدايا بيش للتجارة",
+  "short_name": "هدايا بيش",
+  "description": "منيو وخدمات متجر هدايا بيش للتجارة",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FBF9F6",
+  "theme-color": "#8A704C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1150/1150593.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
