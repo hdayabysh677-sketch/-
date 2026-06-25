@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#8A704C">
+    <!-- دعم الأيفون -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="هدايا بيش">
 </head>
 <body>
 
+    <!-- نافذة تثبيت التطبيق الذكية -->
     <div id="pwa-install-banner" class="install-banner">
         <div class="banner-content">
-            <span class="close-banner" onclick="dismissInstall()">×</span>
+            <span class="close-banner" onclick="dismissInstall()">&times;</span>
             <div class="banner-text">
                 <h3>تثبيت تطبيق هدايا بيش 📱</h3>
                 <p id="install-instructions">تصفح المنيو واطلب بسرعة وسهولة مباشرة من شاشتك الرئيسية!</p>
@@ -30,15 +32,19 @@
             <span style="display:none; font-size: 30px;">🎁</span>
         </div>
         <h1>هدايا بيش للتجارة</h1>
-        <p>مرحباً بكم.. نتميز بأجمل التوزيعات، الحفر، النحت وتغليف الهدايا لجميع مناسباتكم السعيدة</p>
+        <p> <p>مرحباً بكم في هدايا بيش للتجارة. وجهتكم الأولى لخطّ ذكرياتكم بنقاء الأكريليك ودفء الخشب. نتميز بفن النحت، الحفر بالليزر، وتغليف الهدايا بلمسات ملكية تليق بمناسباتكم السعيدة. 👑</p>
+</p>
         
         <div class="info-pills">
+            <!-- تم تضمين الرابط البرمجي الثابت والمطابق تماماً للموقع الدقيق الذي أرسلته -->
             <a href="https://www.google.com/maps/search/?api=1&query=هدايا+بيش&query_place_id=ChIJG9YjuDnL4hUR5cn_icJQ82g" class="pill" target="_blank">📍 بيش - الشريعة (جوار بصمة الشامل)</a>
             <a href="https://wa.me/966505305996" class="pill" target="_blank">📞 للطلب والحجز: 0505305996</a>
+            <!-- تم إدراج رابط السناب شات مفعلاً بالكامل هنا -->
             <a href="https://www.snapchat.com/add/hadih1407?share_id=6ZOg0aN5Khc&locale=ar-SA" class="pill" target="_blank">👻 hadih1407</a>
         </div>
     </header>
 
+    <!-- شريط الأقسام السريع -->
     <nav class="categories-nav">
         <a href="#acrylic" class="nav-btn active">الأكريليك والنحت</a>
         <a href="#wood" class="nav-btn">قسم الخشب</a>
@@ -49,6 +55,7 @@
 
     <div class="container" style="padding-bottom: 100px;">
 
+        <!-- قسم الأكريليك -->
         <div id="acrylic">
             <h2 class="section-title">قسم النحت والأكريليك</h2>
             <div class="items-grid">
@@ -73,6 +80,7 @@
             </div>
         </div>
 
+        <!-- قسم الخشب -->
         <div id="wood">
             <h2 class="section-title">قسم الخشب</h2>
             <div class="items-grid">
@@ -88,6 +96,7 @@
             </div>
         </div>
 
+        <!-- قسم التوزيعات -->
         <div id="prints">
             <h2 class="section-title">طباعة توزيعات المواليد والمناسبات</h2>
             <div class="items-grid">
@@ -105,8 +114,10 @@
 
     </div>
 
+    <!-- الشريط السفلي العائم (يتحول بالكامل لزر ضغط لفتح السلة) -->
     <div class="cart-footer" onclick="toggleCartModal(true)">
         <div class="cart-info">
+            <!-- أيقونة السلة اللطيفة -->
             <span class="cart-icon">🛒</span>
             <span class="cart-count" id="cartCount">السلة: 0 عناصر</span>
             <span class="cart-total" id="cartTotal">0 ر.س</span>
@@ -114,20 +125,23 @@
         <button class="open-cart-btn">عرض السلة 🛍️</button>
     </div>
 
+    <!-- نافذة السلة المنبثقة (Modal) -->
     <div id="cartModal" class="cart-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>🛒 محتويات السلة والطلب</h2>
-                <span class="close-modal" onclick="toggleCartModal(false)">×</span>
+                <span class="close-modal" onclick="toggleCartModal(false)">&times;</span>
             </div>
             
             <div class="modal-body">
+                <!-- قائمة الأصناف المضافة -->
                 <div id="cartItemsList" class="cart-items-list">
                     <p class="empty-msg">السلة فارغة حالياً.. أضف بعض المنتجات!</p>
                 </div>
                 
                 <hr class="divider">
 
+                <!-- خيارات استلام الطلب -->
                 <div class="order-type-section">
                     <h3>📦 نوع استلام الطلب:</h3>
                     <div class="radio-group">
@@ -142,6 +156,7 @@
                     </div>
                 </div>
 
+                <!-- قسم تحديد الموقع (يظهر فقط مع خيار التوصيل) -->
                 <div id="locationSection" class="location-section">
                     <h3>📍 موقع التوصيل</h3>
                     <button type="button" class="geo-btn" onclick="getLocation()">🎯 تحديد موقعي الحالي تلقائياً</button>
@@ -149,6 +164,7 @@
                     <input type="text" id="customerLocation" class="location-input" placeholder="أو اكتب تفاصيل العنوان والحي هنا...">
                 </div>
 
+                <!-- حقل الملاحظات المخصص -->
                 <div class="notes-section">
                     <h3>📝 ملاحظات وتفاصيل خاصة للطلب:</h3>
                     <textarea id="orderNotes" class="notes-input" placeholder="اكتب هنا الأسماء المراد حفرها، الألوان، أو أي تفاصيل إضافية للطلب..."></textarea>
@@ -159,6 +175,7 @@
                 </div>
             </div>
 
+            <!-- زر الإرسال النهائي داخل النافذة -->
             <div class="modal-footer">
                 <div class="final-total">المجموع: <span id="modalTotal">0 ر.س</span></div>
                 <button class="whatsapp-submit-btn" onclick="sendWhatsAppOrder()">
