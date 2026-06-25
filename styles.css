@@ -31,29 +31,33 @@ body {
 }
 
 /* ==========================================
-   2️⃣ الهيدر (رأس الصفحة) وشعار المتجر
+   2️⃣ الهيدر (رأس الصفحة) الملكي المطور
 ========================================== */
 header {
     text-align: center;
-    padding: 30px 15px;
-    background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #8A704C 0%, #5C4A32 100%); /* تدرج لوني فخم يعكس دفء الخشب والنحت */
     color: var(--white);
+    border-bottom: 5px solid #D4AF37; /* خط سفلي ذهبي ملكي رفيع */
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 header h1 {
-    font-size: 24px;
-    margin-top: 12px;
+    font-size: 26px;
+    margin-top: 15px;
     font-weight: bold;
+    color: #D4AF37;  /* اسم المتجر باللون الذهبي البراق */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 header p {
     font-size: 14px;
-    opacity: 0.9;
-    margin: 10px auto;
-    max-width: 500px;
+    line-height: 1.8;
+    margin: 15px auto 25px auto;
+    max-width: 650px;
+    color: #f5f5f5; /* لون أبيض عاجي ناعم لسهولة القراءة */
 }
 
 .logo-placeholder {
@@ -76,29 +80,30 @@ header p {
     object-fit: cover;
 }
 
+/* أزرار التواصل الشفافة ذات الإطار الذهبي */
 .info-pills {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
-    margin-top: 15px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .info-pills .pill, header a.pill {
-    background-color: rgba(255, 255, 255, 0.15);
+    background: transparent;
+    border: 2px solid #D4AF37; /* إطار ذهبي ملكي */
     color: var(--white);
-    padding: 6px 12px;
-    border-radius: 20px;
+    padding: 8px 16px;
+    border-radius: 25px;
     font-size: 12px;
     text-decoration: none;
-    backdrop-filter: blur(5px);
-    transition: background 0.2s;
-    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
 }
 
 .info-pills a.pill:hover {
-    background-color: var(--accent-color);
-    color: var(--dark-color);
+    background-color: #D4AF37; /* تمتلئ باللون الذهبي عند التفاعل */
+    color: #333333; /* يتحول النص للون داكن للوضوح */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
 /* ==========================================
@@ -115,7 +120,7 @@ header p {
     backdrop-filter: blur(10px);
     z-index: 999;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    scrollbar-width: none; /* إخفاء شريط التمرير المتعب */
+    scrollbar-width: none;
 }
 
 .categories-nav::-webkit-scrollbar {
@@ -172,20 +177,27 @@ header p {
 .item-card {
     background-color: var(--white);
     border-radius: 12px;
-    padding: 12px;
+    padding: 15px;
     display: flex;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    border: 1px solid #f0eae0;
+    box-shadow: 0 4px 15px rgba(138, 112, 76, 0.05);
+    border: 1px solid rgba(214, 175, 55, 0.2); /* حدود ذهبية ناعمة للكروت */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-2px);
+    border-color: #D4AF37;
+    box-shadow: 0 6px 20px rgba(214, 175, 55, 0.15);
 }
 
 .item-img {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
     object-fit: cover;
     border-radius: 10px;
-    border: 1px solid #eee;
+    border: 1px solid #f0eae0;
     background-color: var(--light-color);
     flex-shrink: 0;
 }
