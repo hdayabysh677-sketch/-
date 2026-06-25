@@ -1,8 +1,15 @@
+// ==========================================
+// 1️⃣ إعداد المتغيرات الأساسية للسلة والـ PWA
+// ==========================================
 let cart = [];
 let total = 0;
 let userCoordinatesLink = ""; 
-let currentOrderType = "توصيل"; // القيمة الافتراضية
-let deferredPrompt;
+let currentOrderType = "توصيل"; // القيمة الافتراضية للطلب
+let deferredPrompt; // لتخزين حدث تثبيت التطبيق
+
+// ==========================================
+// 2️⃣ إدارة عمليات السلة وتحديث الواجهة
+// ==========================================
 
 // إضافة المنتجات وتحديث العرض
 function addToCart(name, price) {
@@ -11,6 +18,7 @@ function addToCart(name, price) {
     updateCartUI();
 }
 
+// تحديث واجهات المستخدم المتعلقة بالسلة
 function updateCartUI() {
     // تحديث شريط السلة السفلي الرئيسي
     document.getElementById('cartCount').innerText = `السلة: ${cart.length} عناصر`;
@@ -47,7 +55,7 @@ function toggleCartModal(show) {
     const modal = document.getElementById('cartModal');
     if(show) {
         modal.style.display = "block";
-        updateCartUI(); // للتأكد من تحديث البيانات عند الفتح
+        updateCartUI(); // التأكد من تحديث البيانات عند الفتح
     } else {
         modal.style.display = "none";
     }
@@ -61,6 +69,10 @@ window.onclick = function(event) {
     }
 }
 
+// ==========================================
+// 3️⃣ إدارة خيارات التوصيل والموقع الجغرافي
+// ==========================================
+
 // التحكم في ظهور وإخفاء قسم الموقع بناء على نوع الاستلام
 function handleOrderTypeChange(value) {
     currentOrderType = value;
@@ -72,7 +84,7 @@ function handleOrderTypeChange(value) {
     }
 }
 
-// تحديد الموقع الجغرافي
+// تحديد الموقع الجغرافي عبر الـ GPS
 function getLocation() {
     const statusDiv = document.getElementById('geo-status');
     if (!navigator.geolocation) {
@@ -98,7 +110,9 @@ function getLocation() {
     );
 }
 
-// صياغة وإرسال رسالة الواتساب النهائية
+// ==========================================
+// 4️⃣ صياغة وإرسال رسالة الواتساب
+// ==========================================
 function sendWhatsAppOrder() {
     if(cart.length === 0) {
         alert('الرجاء إضافة أصناف إلى السلة أولاً!');
@@ -153,9 +167,40 @@ function sendWhatsAppOrder() {
     window.open(whatsappUrl, '_blank');
 }
 
-// كود الـ PWA
+// ==========================================
+// 5️⃣ إعدادات تطبيق الـ PWA وتثبيته
+// ==========================================
+
+// تسجيل الـ Service Worker عند تحميل الصفحة
 window.addEventListener('load', () => {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js').then(() => console.log('SW Registered'));
     }
+});
+
+// الاستماع لحدث جاهزية التطبيق للتثبيت وإظهار البنر
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    const installBanner = document.getElementById('pwa-install-banner');
+    if (installBanner) {
+        installBanner.style.display = 'block';
+    }
+});
+
+// تفعيل زر "تثبيت الآن"
+document.getElementById('btn-install-now').addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`قرار المستخدم بشأن التثبيت: ${outcome}`);
+        deferredPrompt = null;
+        document.getElementById('pwa-install-banner').style.display = 'none';
+    }
+});
+
+// تفعيل زر الإغلاق لإخفاء بنر التثبيت
+document.getElementById('close-pwa-banner').addEventListener('click', () => {
+    document.getElementById('pwa-install-banner').style.display = 'none';
 });
