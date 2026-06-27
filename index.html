@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدايا بيش للتجارة - معرض المنتجات الرقمي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8A704C">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="هدايا بيش">
+
+    <style>
+        /* تنسيق الشاشة الترحيبية لتغطي كامل الموقع */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8A704C; /* لون الخلفية الذهبي/البرونزي للمحل */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        #splash-screen img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        /* تنسيق لوحة تثبيت التطبيق PWA */
+        #pwa-install-banner {
+            display: none; /* مخفي تلقائياً ويظهر بواسطة الجافاسكريبت */
+            background-color: #ffffff;
+            border: 2px solid #D4AF37;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 770px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+        }
+        #btn-install-now {
+            background-color: #8A704C;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .close-banner-btn {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <img src="spl.jpg" alt="شاشة ترحيبية هدايا بيش" onerror="this.style.display='none'; this.parentElement.innerHTML='<h1 style=\"color:white; font-size:28px;\">🎁 هدايا بيش للتجارة</h1>';">
+    </div>
+
+    <header>
+        <div class="logo-placeholder">
+            <img src="log.jpg" alt="شعار هدايا بيش" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display:none; font-size: 30px;">🎁</span>
+        </div>
+        <h1>هدايا بيش للتجارة</h1>
+        <p>مرحباً بكم في هدايا بيش للتجارة. وجهتكم الأولى لخطّ ذكرياتكم بنقاء الأكريليك ودفء الخشب. نتميز بفن النحت، الحفر بالليزر، وتغليف الهدايا بلمسات ملكية تليق بمناسباتكم السعيدة. 👑</p>
+        
+        <div class="info-pills">
+            <a href="https://www.google.com/maps/search/?api=1&query=هدايا+بيش&query_place_id=ChIJG9YjuDnL4hUR5cn_icJQ82g" class="pill" target="_blank">📍 بيش - الشريعة (جوار بصمة الشامل)</a>
+            <a href="https://wa.me/966505305996" class="pill" target="_blank">📞 للاستفسار والحجز: 0505305996</a>
+            <a href="https://www.snapchat.com/add/hadih1407?share_id=6ZOg0aN5Khc&locale=ar-SA" class="pill" target="_blank">👻 hadih1407</a>
+        </div>
+        <button id="install-btn" style="display: none; margin: 15px auto; background-color: #8A704C; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 80%;">
+    📥 تثبيت التطبيق على الهاتف
+</button>
+
+    </header>
+
+    <nav class="categories-nav">
+        <a href="#wood" class="nav-btn active">قسم الخشب</a>
+        <a href="#prints" class="nav-btn">قسم التوزيعات</a>
+        <a href="#acrylic" class="nav-btn">قسم الأكريليك</a>
+        <a href="#banners" class="nav-btn">البنارات والإستيكرات</a>
+        <a href="#thermal" class="nav-btn">الطباعة الحرارية</a>
+        <a href="#our-work" class="nav-btn">بعض من أعمالنا</a>
+        <a href="#flowers" class="nav-btn">قسم الورد</a>
+        <a href="#wrapping" class="nav-btn">تغليف الهدايا</a>
+        <a href="#all-products" class="nav-btn">جميع منتجات المحل</a>
+    </nav>
+
+    <div id="pwa-install-banner">
+        <button class="close-banner-btn" onclick="dismissInstall()">×</button>
+        <p style="margin: 0; font-weight: bold; color: #5A4731;">تصفح المتجر بشكل أسرع وأسهل دائماً! 🚀</p>
+        <button id="btn-install-now">تثبيت التطبيق على الشاشة الرئيسية 📱</button>
+    </div>
+
+    <div class="container" style="padding-bottom: 40px;">
+
+        <div id="wood">
+            <h2 class="section-title">🪵 قسم الخشب</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="wd1.jpg" alt="أسماء ثري دي" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=🪵'">
+                    <div class="item-details">
+                        <div class="item-name">أسماء ثري دي خشبية</div>
+                        <div class="item-desc">تصميم وتنفيذ الأسماء ثلاثية الأبعاد؛ نحسب لك المقاس والاسم واللون المطلوب بدقة.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('أسماء ثري دي خشبية - قسم الخشب')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="prints">
+            <h2 class="section-title">👶 قسم التوزيعات</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="pr1.jpg" alt="توزيعات متنوعة" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=👶'">
+                    <div class="item-details">
+                        <div class="item-name">توزيعات المناسبات الفاخرة</div>
+                        <div class="item-desc">تجهيز وتصميم متكامل لكل من: توزيعات مواليد، توزيعات حنة، توزيعات العزوبية، وتوزيعات الأعراس.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('توزيعات المناسبات (مواليد - حنة - عزوبية - أعراس)')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="acrylic">
+            <h2 class="section-title">💎 قسم الأكريليك</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="ac1.jpg" alt="صناديق أكريليك" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=💎'">
+                    <div class="item-details">
+                        <div class="item-name">صناديق أكريليك مخصصة</div>
+                        <div class="item-desc">تصميم وتنفيذ صناديق أكريليك متميزة ومفصلة تماماً حسب اللون والمقاس الذي تحدده.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('صناديق أكريليك مخصصة حسب اللون والمقاس')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+                <div class="item-card">
+                    <img src="ac2.jpg" alt="دروع أكريليك" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=💎'">
+                    <div class="item-details">
+                        <div class="item-name">دروع أكريليك فاخرة</div>
+                        <div class="item-desc">قص ونحت ليزر للدروع التكريمية والتذكارية بتصاميم ملكية مبتكرة.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('دروع أكريليك فاخرة')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+                <div class="item-card">
+                    <img src="ac3.jpg" alt="تفصيل أكريليك" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=💎'">
+                    <div class="item-details">
+                        <div class="item-name">تفصيل أكريليك حسب الطلب</div>
+                        <div class="item-desc">نلبي أفكارك الخاصة؛ تفصيل أي مجسم أو فكرة أكريليك بدقة بناءً على رغبة الزبون.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('تفصيل أكريليك حسب رغبة الزبون')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="banners">
+            <h2 class="section-title">📐 قسم الطباعة البنارات والإستيكرات</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="bn1.jpg" alt="طباعة لوحات بنار" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=📐'">
+                    <div class="item-details">
+                        <div class="item-name">طباعة لوحات بنار مخصصة</div>
+                        <div class="item-desc">طباعة بنارات حفلات ومناسبات عالية الجودة ومصممة حسب المقاس المطلوب.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('طباعة لوحات بنار حسب المقاس')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+                <div class="item-card">
+                    <img src="bn2.jpg" alt="طباعة إستيكرات" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=📐'">
+                    <div class="item-details">
+                        <div class="item-name">طباعة إستيكرات ولوحات فلين</div>
+                        <div class="item-desc">ملصقات دقيقة وقص ليزر للشعارات، بالإضافة إلى لوحات الفلين وغيرها حسب طلب العميل.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('طباعة إستيكرات ولوحات فلين وغيره')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="thermal">
+            <h2 class="section-title">👕 قسم الطباعة الحرارية الأسطح</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="th1.jpg" alt="طباعة على الشرايط" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=👕'">
+                    <div class="item-details">
+                        <div class="item-name">طباعة مخصصة على الشرايط</div>
+                        <div class="item-desc">إضافة الأسماء والشعارات على أشرطة وتغليف الهدايا لمظهر ملكي خاص.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('طباعة على الشرايط - الطباعة الحرارية')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+                <div class="item-card">
+                    <img src="th2.jpg" alt="طباعة على التيشرتات" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=👕'">
+                    <div class="item-details">
+                        <div class="item-name">طباعة على التيشرتات والأقمشة</div>
+                        <div class="item-desc">تنفيذ التصاميم والعبارات المختلفة على التيشرتات بحسب اللون ونوع الخامة المختار.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('طباعة على التيشرتات حسب اللون والخامة')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="our-work">
+            <h2 class="section-title">💼 قسم بعض من أعمالنا</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="wk1.jpg" alt="معرض أعمالنا" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=💼'">
+                    <div class="item-details">
+                        <div class="item-name">ألبوم أعمالنا المتنوعة</div>
+                        <div class="item-desc">تصفح تشكيلة واسعة لجميع الأصناف والخيارات المبتكرة في مختلف مجالات أعمالنا السابقة.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('استفسار عن نماذج من أعمال المحل المتنوعة')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="flowers">
+            <h2 class="section-title">🌹 قسم الورد</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="fl1.jpg" alt="تنسيق ورد" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=🌹'">
+                    <div class="item-details">
+                        <div class="item-name">تنسيق وتجهيز الورد</div>
+                        <div class="item-desc">تشكيلات رائعة من الورد الطبيعي والورد الصناعي، يتم تجهيزها وتنسيقها بعناية حسب طلبك.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('تجهيز ورد (طبيعي / صناعي) حسب الطلب')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="wrapping">
+            <h2 class="section-title">🎁 قسم تغليف الهدايا</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="wp1.jpg" alt="تغليف هدايا" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=🎁'">
+                    <div class="item-details">
+                        <div class="item-name">تغليف هدايا ملكي مخصص</div>
+                        <div class="item-desc">نمنح هديتك لمسة جمالية استثنائية ونقوم بالتغليف والتنسيق الكامل حسب طلب العميل.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('تغليف هدايا مخصص حسب طلب العميل')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="all-products">
+            <h2 class="section-title">🏪 قسم جميع منتجات المحل</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="sh1.jpg" alt="منتجات المتجر" class="item-img" onerror="this.src='https://placehold.co/400x400/8A704C/white?text=🏪'">
+                    <div class="item-details">
+                        <div class="item-name">البضائع والأصناف الجاهزة بالمتجر</div>
+                        <div class="item-desc">استكشف جميع المنتجات المتوفرة حالياً داخل المحل من هدايا، بلاستيك، وغيرها من الأصناف المتنوعة.</div>
+                    </div>
+                    <button class="add-btn" onclick="askAboutProduct('استفسار عن المنتجات الجاهزة المتوفرة in المحل (هدايا وبلاستيك وغيرة)')">استفسار مباشر عبر الواتساب 💬</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
